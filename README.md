@@ -82,4 +82,4 @@ This guide will walk you through the process of setting up and using the provide
 
 ### Conclusion
 
-By following this guide, you should be able to set up and use the provided Python script to automate interactions with a website that uses hCaptcha. If you encounter any issues, refer to the troubleshooting section or seek further assistance online.
+By following this guide, you should be able to set up and use the provided Python script to automate interactions with Bot-Hosting.net using hCaptcha. If you encounter any issues, refer to the troubleshooting section or seek further assistance online.
