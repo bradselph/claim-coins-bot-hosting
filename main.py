@@ -1,14 +1,30 @@
+import winreg
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import os
 import time
 import sys
+
+def get_chrome_path():
+    registry_key = winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r'SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe')
+    chrome_path = winreg.QueryValue(registry_key, None)
+    winreg.CloseKey(registry_key)
+    return chrome_path
+
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--user-data-dir=YOUR_USER_DATA_PATH')
 chrome_options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.5845.96 Safari/537.36')
-chrome_path = r'YOUR_CHROME_PATH'
+
+# Call the function to get the Chrome path
+chrome_path = get_chrome_path()
+
 chrome_options.binary_location = chrome_path
 driver = webdriver.Chrome(options=chrome_options)
+
+
+# Add your hCaptcha accessibility token to the browser's cookies
+driver.get('https://www.hcaptcha.com/')
+driver.add_cookie({'name': 'hc_accessibility', 'value': 'YOUR_ACCESSIBILITY_TOKEN'})
 driver.get('https://bot-hosting.net/panel/earn')
 time.sleep(5)
 while True:
